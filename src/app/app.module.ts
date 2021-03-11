@@ -85,7 +85,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '910891705833-ch13cbd7je16n0uscshe6n90eu3k8098.apps.googleusercontent.com'
+              '<PLEASE ADD YOUR CLIENT ID HERE>'
             )
           }
         ]
