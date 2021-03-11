@@ -1,0 +1,39 @@
+<div *ngIf="isOwner" id="crt-restaurant-owner-header">
+  <mat-label i18n="critic.restaurant.owner.title" class="crt-label-title">My restaurants</mat-label>
+  <button mat-raised-button color="primary"  (click)="addRestaurant()" >
+    <mat-icon>add_business</mat-icon>
+    <label i18n="critic.restaurants.add">Add Restaurant</label>
+  </button>
+</div>
+<div id="crt-restaurants-header">
+  <span id="crt-text-filter">
+    <mat-icon-button class="md-icon-button" ng-click="filterRestaurantsByText()">
+      <mat-icon>search</mat-icon>
+    </mat-icon-button>
+    <mat-form-field flex>
+      <mat-label i18n="critic.restaurant.search">Type some text to filter out restaurants</mat-label>
+      <input matInput type="text" [(ngModel)]="searchText" (keyup.enter)="filterRestaurantsByText()" />
+      <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="clearTextFilter()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </span>
+  <span id="crt-rating-filter">
+    <mat-label i18n="critic.restaurant.ratingFilter">Filter by minimum rating</mat-label>
+    <star-rating [(rating)]="rating" (ratingChanged)="filterRestaurantsByRating($event)" [showText]="false" [showRatingMessage]="false"></star-rating>
+  </span>
+</div>
+<div id="crt-restaurants-content">
+  <restaurant-card *ngFor="let restaurant of restaurants$ | async" [restaurant]="restaurant"
+                    [showEdit]="isOwner || isAdmin"
+                    [showDelete]="isAdmin"
+                    (onDeleteClick)="deleteRestaurant($event)"
+                    (onEditClick)="editRestaurant($event)"
+                    (onReviewsClick)="goToReviews($event)">
+  </restaurant-card>
+</div>
+<div id="crt-restaurants-loadmore">
+  <button *ngIf="restaurantsHaveMoreResults$ |async"  mat-button color="accent"  (click)="loadMore()" >
+    <label i18n="critic.restaurants.loadMore">Load more</label>
+  </button>
+</div>

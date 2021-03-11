@@ -1,0 +1,11 @@
+@import 'src/theme.scss';
+#crt-user-editable form{
+  display: flex;
+  flex-direction: column;
+  min-width: 640px;
+}
+.mat-dialog-actions{
+  button{
+    color: mat-color($critic-primary, 300);
+  }
+}

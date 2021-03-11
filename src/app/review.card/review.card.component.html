@@ -1,0 +1,72 @@
+<div class="crt-review-card " [ngClass]="{'crt-border': showBorder}">
+  <!-- READONLY REVIEW -->
+  <div *ngIf="!editable" class="crt-review-card-wrapper">
+    <div class="crt-review-card-header">
+      <img [src]="review.userImage"/>
+      <h4>{{review.date | date:'shortDate'}}</h4>
+      <span class="crt-review-links">
+        <mat-button *ngIf="showEdit" (click)="editReview()" i18n="critic.review.edit"><a>Edit</a></mat-button>
+        <mat-button *ngIf="showDelete" (click)="deleteReview()" i18n="critic.review.delete">Delete</mat-button>
+      </span>
+      <star-rating [rating]="review.rating" [editable]="false"></star-rating>
+    </div>
+    <div class="crt-review-card-content">
+      <p [matTooltip]="review?.comment.length > 500 ? review?.comment: ''" matTooltipPosition="above" matTooltipClass="crt-comment-tooltip">{{review.comment}}</p>
+      <div *ngIf="!showReplyButton" class="crt-review-card-reply">
+        <span>
+          <img *ngIf="review.reply"[src]="review?.reply?.userImage"/>
+          <label *ngIf="!review.reply" i18n="critic.review.noreply">No reply yet</label>
+        </span>
+        <span>
+          <h4>{{review?.reply?.date | date:'shortDate'}}</h4>
+          <p  [matTooltip]="review?.reply?.comment.length > 500 ? review?.reply?.comment: ''" matTooltipPosition="above" matTooltipClass="crt-comment-tooltip">{{review?.reply?.comment}}</p>
+        </span>
+      </div>
+    </div>
+    <form #replyForm="ngForm" >
+      <div *ngIf="showReplyButton && reply != null" class="crt-review-reply-editable" >
+          <mat-form-field appearance="fill" class="crt-review-reply-comment">
+            <mat-label i18n="critic.review.reply">Please add a reply to this review</mat-label>
+            <textarea required matInput mat-autosize maxlength=4000 [(ngModel)]="reply.comment" #replyComment="ngModel" name="replyComment" ></textarea>
+          </mat-form-field>
+      </div>
+      <div *ngIf="showReplyButton"  class="crt-review-card-buttons" >
+        <button mat-raised-button color="accent" i18n="critic.review.reply" (click)="postReply()">Reply</button>
+      </div>
+    </form>
+  </div>
+  <!-- EDITABLE REVIEW -->
+  <div *ngIf="editable" class="crt-review-card-editable">
+    <form #reviewForm="ngForm" >
+      <div class="crt-review-card-header">
+        <img [src]="review.userImage"/>
+        <mat-form-field appearance="fill" class="crt-review-editable-date">
+          <mat-label i18n="critic.review.date">Date of visit</mat-label>
+          <input required matInput [matDatepicker]="picker" [(ngModel)]="review.date" #reviewDate="ngModel" name="reviewDate" >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <star-rating [rating]="review.rating" (ratingChanged)="review.rating = $event" [editable]="true"></star-rating>
+      </div>
+      <div class="crt-review-card-content" >
+        <mat-form-field appearance="fill" class="crt-review-editable-comment">
+          <mat-label i18n="critic.review.comment">How was your experience?</mat-label>
+          <textarea required matInput mat-autosize maxlength=4000 [(ngModel)]="review.comment" #reviewComment="ngModel" name="reviewComment"></textarea>
+        </mat-form-field>
+      </div>
+      <div *ngIf="showEdit && review.reply != null" class="crt-review-reply-editable" >
+        <mat-form-field appearance="fill" class="crt-review-reply-comment">
+          <mat-label i18n="critic.review.reply">Please add a reply to this review</mat-label>
+          <textarea required matInput mat-autosize maxlength=4000 [(ngModel)]="reply.comment"  #replyComment="ngModel" name="replyComment"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="crt-review-card-buttons" >
+        <button *ngIf="!showEdit" mat-raised-button i18n="critic.review.cancel" (click)="cancel()">Cancel</button>
+        <button *ngIf="!showEdit" mat-raised-button color="accent" i18n="critic.review.add" (click)="add()">Add</button>
+        <button *ngIf="showEdit" mat-raised-button i18n="critic.review.cancel" (click)="cancelEdition()">Cancel</button>
+        <button *ngIf="showEdit" mat-raised-button color="accent" i18n="critic.review.edit" (click)="finishEdition()">Edit</button>
+      </div>
+    </form>
+  </div>
+  <!-- END EDITABLE REVIEW -->
+</div>

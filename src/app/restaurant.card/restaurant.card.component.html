@@ -1,0 +1,17 @@
+<div class="crt-restaurant-card crt-border">
+  <div class="crt-restaurant-card-wrapper">
+    <span class="crt-restaurant-card-image">
+      <img [src]="restaurant.image"/>
+    </span>
+    <h2>{{restaurant.name}}</h2>
+    <h3>{{restaurant.city}} - ${{restaurant.price}}</h3>
+    <h4>{{restaurant.address}}</h4>
+    <star-rating [rating]="restaurant.rating" [editable]="false"></star-rating>
+    <p>{{restaurant.description}}</p>
+    <span class="crt-restaurant-card-links">
+      <mat-button *ngIf="showEdit" (click)="editRestaurant()" i18n="critic.restaurant.edit"><a>Edit</a></mat-button>
+      <mat-button *ngIf="showDelete" (click)="deleteRestaurant()" i18n="critic.restaurant.delete">Delete</mat-button>
+      <mat-button *ngIf="showReviews" (click)="goToReviews()" i18n="critic.restaurant.reviews">Reviews</mat-button>
+    </span>
+  </div>
+</div>

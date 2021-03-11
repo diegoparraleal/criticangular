@@ -1,0 +1,155 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// below defines your custom color to build a theme palette from
+$my-darkgreen: (
+  50 : #e0e7e7,
+  100 : #b3c2c2,
+  200 : #809a99,
+  300 : #4d7170,
+  400 : #265252,
+  500 : #003433,
+  600 : #002f2e,
+  700 : #002727,
+  800 : #002120,
+  900 : #001514,
+  A100 : #55ffff,
+  A200 : #22ffff,
+  A400 : #00eeee,
+  A700 : #00d4d4,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$my-black: (
+    50 : #e1e5e7,
+    100 : #b4bec2,
+    200 : #829399,
+    300 : #4f6770,
+    400 : #2a4752,
+    500 : #042633,
+    600 : #03222e,
+    700 : #031c27,
+    800 : #021720,
+    900 : #010d14,
+    A100 : #55aaff,
+    A200 : #2290ff,
+    A400 : #0077ee,
+    A700 : #006ad4,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$my-lightgreen: (
+    50 : #f8faf6,
+    100 : #eef4e9,
+    200 : #e3ecda,
+    300 : #d7e4cb,
+    400 : #cfdfbf,
+    500 : #c6d9b4,
+    600 : #c0d5ad,
+    700 : #b9cfa4,
+    800 : #b1ca9c,
+    900 : #a4c08c,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #f6ffef,
+    A700 : #e8ffd5,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$my-orange: (
+    50 : #ffebe7,
+    100 : #ffcec2,
+    200 : #ffad99,
+    300 : #ff8c70,
+    400 : #ff7452,
+    500 : #ff5b33,
+    600 : #ff532e,
+    700 : #ff4927,
+    800 : #ff4020,
+    900 : #ff2f14,
+    A100 : #ffffff,
+    A200 : #fffbfb,
+    A400 : #ffcdc8,
+    A700 : #ffb5ae,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+/* ======== Angular material custom themes ======== */
+$critic-primary: mat-palette($my-darkgreen);
+$critic-accent: mat-palette($my-orange, 100, 500, A100);
+$critic-warn: mat-palette($my-lightgreen);
+
+$critic-theme: mat-light-theme($critic-primary, $critic-accent, $critic-warn);
+
+@include angular-material-theme($critic-theme);
+
+/* ================================================ */
+/*  DEFINE MOBILE MEDIA QUERY VARIABLES
+/* ================================================ */
+$desktop: 960px;
+$tablet: 768px;
+$mobile-large: 640px;
+$mobile: 480px;
+$mobile-small: 300px;

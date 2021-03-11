@@ -1,0 +1,36 @@
+<div id="crt-page-wrapper">
+  <mat-toolbar id="ctr-header" color="primary" class="header">
+    <img src="assets/logo.png"/>
+    <span id="crt-menu-items">
+      <button *ngIf="appUser != null && appUser.role != 'user'" mat-menu-item (click)="goToRestaurants()" >
+        <mat-icon>restaurant</mat-icon>
+        <span i18n="critic.menu.restaurants">Restaurants</span>
+      </button>
+      <button *ngIf="appUser != null && appUser?.role == 'owner'" mat-menu-item (click)="goToPendingReviews()">
+        <mat-icon>reviews</mat-icon>
+        <span i18n="critic.menu.reviews">Pending Reviews</span>
+      </button>
+      <button *ngIf="appUser != null && appUser?.role == 'admin'" mat-menu-item (click)="goToUsers()">
+        <mat-icon>supervised_user_circle</mat-icon>
+        <span i18n="critic.menu.users">Users</span>
+      </button>
+    </span>
+    <span id="crt-user">
+      <label id="ctr-name">{{appUser?.name || user?.name}}</label>
+      <label id="ctr-email">{{appUser?.email ||user?.email}}</label>
+      <img *ngIf="user" [matMenuTriggerFor]="menuUser" [src]="user.photoUrl" />
+      <mat-menu #menuUser="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span i18n="critic.menu.logout">Logout</span>
+        </button>
+      </mat-menu>
+    </span>
+  </mat-toolbar>
+  <div id="crt-content">
+    <router-outlet></router-outlet>
+  </div>
+  <mat-toolbar id="ctr-footer" color="primary" class="footer">
+    <label i18n>Copyright diego.parra.leal@gmail.com - 2021</label>
+  </mat-toolbar>
+</div>

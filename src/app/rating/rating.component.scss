@@ -1,0 +1,20 @@
+@import 'src/theme.scss';
+
+label{
+  color: mat-color($critic-warn, 300);
+  font-size: 16px;
+  font-weight: 100;
+  top: 2px;
+  position: relative;
+  margin-right: 8px;
+  border: 1px solid mat-color($critic-warn, 300);
+  padding: 4px 8px;
+}
+
+button{
+  cursor: initial;
+}
+
+.crt-tooltip-editable{
+  cursor: pointer;
+}

@@ -1,0 +1,43 @@
+<h2 *ngIf="!editing" mat-dialog-title i18n="critic.restaurant.editable.addtitle">Add restaurant</h2>
+<h2 *ngIf="editing" mat-dialog-title i18n="critic.restaurant.editable.edittitle">Edit restaurant</h2>
+<mat-dialog-content class="mat-typography">
+<div *ngIf="restaurant != null" id="crt-restaurant-editable">
+  <form #restaurantForm="ngForm" >
+    <mat-form-field appearance="fill" id="crt-restaurant-editable-name">
+      <mat-label i18n="critic.restaurant.name">Name</mat-label>
+      <input required matInput mat-autosize maxlength=200 [(ngModel)]="restaurant.name" #name="ngModel" name="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="crt-restaurant-editable-description">
+      <mat-label i18n="critic.review.description">Please add a description for the restaurant</mat-label>
+      <textarea required matInput mat-autosize maxlength=4000 [(ngModel)]="restaurant.description" #description="ngModel" name="description"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="crt-restaurant-editable-city">
+      <mat-label i18n="critic.restaurant.city">City</mat-label>
+      <input required ngx-google-places-autocomplete matInput #placesRef="ngx-places" maxlength=100
+             [options]="{types: ['(cities)']}" [(ngModel)]="restaurant.city" #city="ngModel" name="city"/>
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="crt-restaurant-editable-address">
+      <mat-label i18n="critic.restaurant.address">Address</mat-label>
+      <input required ngx-google-places-autocomplete matInput #placesRef="ngx-places" maxlength=4000
+             [options]="{type: ['address']}" [(ngModel)]="restaurant.address" #address="ngModel" name="address"/>
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="crt-restaurant-editable-prices">
+      <mat-label i18n="critic.restaurant.price">Average Price</mat-label>
+      <span matPrefix>$ &nbsp;</span>
+      <input required matInput type="number" [(ngModel)]="restaurant.price" #price="ngModel" name="price"/>
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="crt-restaurant-editable-image">
+      <mat-label i18n="critic.restaurant.image">Add an image url</mat-label>
+      <input required matInput mat-autosize maxlength=4000  [(ngModel)]="restaurant.image" #image="ngModel" name="image" [pattern]="imageUrlRegex">
+      <mat-error *ngIf="image?.errors?.pattern">
+        <label i18n="critic.restaurant.imageUrlError">Please enter a valid url address</label>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button *ngIf="!editing" mat-button cdkFocusInitial color="primary" i18n="critic.restaurant.editable.add" (click)="validate()" >Add</button>
+  <button *ngIf="editing" mat-button cdkFocusInitial color="primary" i18n="critic.restaurant.editable.edit" (click)="validate()">Edit</button>
+</mat-dialog-actions>

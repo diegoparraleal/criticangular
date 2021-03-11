@@ -1,0 +1,124 @@
+@import 'src/theme.scss';
+
+.crt-restaurant-card{
+  position: relative;
+  min-height: 236px;
+  padding: 16px;
+  margin-top: 16px;
+
+  .crt-restaurant-card-wrapper{
+    position: relative;
+    width: 100%;
+    min-height: 236px;
+
+
+    .crt-restaurant-card-image{
+      position: absolute;
+      width: 300px;
+      height: 200px;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+
+      img{
+        width: 300px;
+
+      }
+    }
+
+    h2{
+      left: 324px;
+      top: 0;
+      display: inline-block;
+      position: absolute;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    h3{
+      left: 324px;
+      top: 32px;
+      display: inline-block;
+      position: absolute;
+      font-size: 12px;
+    }
+    h4{
+      left: 324px;
+      top: 54px;
+      display: inline-block;
+      position: absolute;
+      font-size: 12px;
+    }
+    star-rating{
+      position: absolute;
+      top: 0;
+      right: 0px;
+    }
+    p{
+      left: 324px;
+      top: 88px;
+      position: absolute;
+      font-size: 14px;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .crt-restaurant-card-links{
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+
+      mat-button{
+        margin-right: 16px;
+        color: mat-color($critic-accent, 300);
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $mobile) {
+  .crt-restaurant-card{
+    .crt-restaurant-card-wrapper{
+      .crt-restaurant-card-image{
+        position: relative;
+        img{
+          width: 128px;
+        }
+      }
+
+      h2{
+        left: 134px;
+      }
+      h3{
+        left: 134px;
+        top: 50px;
+        font-size: 10px;
+      }
+      h4{
+        left: 134px;
+        top: 66px;
+        font-size: 10px;
+      }
+      star-rating{
+        left: 134px;
+        top: 22px;
+        width: 280px;
+        transform: scale(0.8) translateX(-34px);
+      }
+      p{
+        position: relative;
+        left: 0;
+        top: 8px;
+        -webkit-line-clamp: 20;
+      }
+
+      .crt-restaurant-card-links{
+        position: relative;
+      }
+    }
+  }
+}

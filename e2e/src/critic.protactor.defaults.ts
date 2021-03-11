@@ -1,0 +1,1 @@
+export const DEFAULT_CRITIC_SLEEP_TIME = 1000;

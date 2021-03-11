@@ -1,0 +1,94 @@
+@import 'src/theme.scss';
+
+
+.crt-user-card{
+  position: relative;
+  min-height: 80px;
+  padding: 16px;
+  margin-top: 16px;
+
+  .crt-user-card-wrapper{
+    position: relative;
+    width: 100%;
+
+    img{
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      left: 0;
+      top: 0;
+    }
+
+    > h2, h3, h4{
+      left: 80px;
+      display: inline-block;
+      position: absolute;
+      font-size: 22px;
+      font-weight: 400;
+      text-align: center;
+      color: mat-color($critic-primary, 300);
+    }
+
+    > h3, h4{
+      top: 32px;
+      font-size: 18px;
+      color: mat-color($critic-primary, 200);
+    }
+
+    > h4{
+      left: 0px;
+      top: 68px;
+      width: 64px;
+      text-align: center;
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+  }
+
+  .crt-user-card-editable{
+    .crt-user-card-header{
+      position: relative;
+      height: 72px;
+
+      img{
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        left: 0;
+        top: 0;
+      }
+      .crt-review-editable-date{
+        position: absolute;
+        top: 0;
+        left: 88px;
+      }
+      star-rating{
+        position: absolute;
+        top: 0;
+        right: 0px;
+      }
+    }
+    .crt-user-card-content{
+      position: relative;
+
+      .crt-user-editable-comment{
+        width: 100%;
+      }
+    }
+  }
+
+  .crt-user-card-links{
+    text-align: right;
+    display: block;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+
+    mat-button{
+      margin-right: 16px;
+      color: mat-color($critic-accent, 300);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

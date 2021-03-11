@@ -1,0 +1,24 @@
+<div id="crt-users-title">
+  <mat-label i18n="critic.users.title" class="crt-label-title">Users</mat-label>
+</div>
+<div id="crt-users-header">
+  <span id="crt-text-filter">
+    <mat-icon-button class="md-icon-button" ng-click="filterRestaurantsByText()">
+      <mat-icon>search</mat-icon>
+    </mat-icon-button>
+    <mat-form-field flex>
+      <mat-label i18n="critic.user.search">Type some text to filter out users</mat-label>
+      <input matInput type="text" [(ngModel)]="searchText" (keyup.enter)="filterUsersByText()" />
+      <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="clearTextFilter()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </span>
+</div>
+<div id="crt-users-content">
+  <user-card *ngFor="let user of users$ | async" [user]="user"
+                    (onDeleteClick)="deleteUser($event)"
+                    (onEditClick)="editUser($event)">
+  </user-card>
+</div>
+

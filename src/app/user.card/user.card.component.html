@@ -1,0 +1,14 @@
+<div class="crt-user-card crt-border">
+  <div class="crt-user-card-wrapper">
+    <span class="crt-user-card-image">
+      <img [src]="user.image"/>
+    </span>
+    <h2>{{user.name}}</h2>
+    <h3>{{user.email}}</h3>
+    <h4>{{user.role}}</h4>
+  </div>
+  <span class="crt-user-card-links">
+    <mat-button (click)="editUser()" i18n="critic.restaurant.edit"><a>Edit</a></mat-button>
+    <mat-button  (click)="deleteUser()" i18n="critic.restaurant.delete">Delete</mat-button>
+  </span>
+</div>

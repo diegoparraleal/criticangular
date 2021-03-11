@@ -1,0 +1,13 @@
+<div id="crt-pending-reviews-header">
+  <mat-label i18n="critic.pendingreviews.title" class="crt-label-title">Pending reviews</mat-label>
+</div>
+<div *ngIf="(reviewsWithRestaurant$ | async)?.length > 0" id="crt-pending-reviews-content">
+  <ng-container *ngFor="let reviewWithRestaurant of reviewsWithRestaurant$ | async">
+    <label class="crt-label-title">{{reviewWithRestaurant.restaurant.name}}</label>
+    <review-card  [review]="reviewWithRestaurant.review" [showReplyButton]="true" (onReply)="postReply(reviewWithRestaurant.restaurant.id, reviewWithRestaurant.review.id, $event)" ></review-card>
+  </ng-container>
+</div>
+<div *ngIf="(reviewsWithRestaurant$ | async)?.length == 0" id="crt-restaurant-detail-noreviews">
+  <label i18n="critic.pendingreviews.none">There are no pending reviews. You are up to date! <mat-icon>thumb_up_off_alt</mat-icon></label>
+</div>
+

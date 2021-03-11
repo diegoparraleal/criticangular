@@ -1,0 +1,23 @@
+@import 'src/theme.scss';
+
+#crt-home-image{
+  width: 100%;
+}
+h3{
+  color: mat-color($critic-primary);
+  font-size: 24px;
+  text-align: center;
+  padding: 8px 0px;
+  margin: 32px 0;
+}
+button{
+  left: calc(50% - 18px);
+  margin-top: 24px;
+}
+
+@media only screen and (max-width: $mobile) {
+  button{
+    left: calc(50% - 30px);
+    margin-top: 100px;
+  }
+}

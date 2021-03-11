@@ -1,0 +1,39 @@
+<div id="crt-restaurant-detail-header">
+  <restaurant-card  *ngIf="restaurant" [restaurant]="restaurant" [showReviews]="false">
+  </restaurant-card>
+</div>
+<div *ngIf="appUser?.role == 'user'" id="crt-restaurant-detail-links">
+  <mat-button (click)="addReview()" i18n="critic.restaurant.addReview">Add a review</mat-button>
+</div>
+<div *ngIf="addingReview" id="crt-restaurant-detail-addReview">
+  <review-card [editable]="true"  [review]="newReview" (onCancel)="cancelAddition()" (onAdd)="postReview($event)"></review-card>
+</div>
+<div *ngIf="reviews?.length > 1" id="crt-restaurant-detail-topreviews">
+  <span class="crt-border">
+    <label i18n="critic.restaurant.bestReview" class="crt-label-title">Best review <mat-icon>thumb_up_off_alt</mat-icon></label>
+    <review-card *ngIf="bestReview" [review]="bestReview" [showBorder]="false"></review-card>
+  </span>
+  <span class="crt-border">
+    <label label i18n="critic.restaurant.worstReview" class="crt-label-title">Worst review <mat-icon>thumb_down_off_alt</mat-icon></label>
+    <review-card *ngIf="worstReview" [review]="worstReview" [showBorder]="false"></review-card>
+  </span>
+</div>
+<div *ngIf="reviews?.length > 0" id="crt-restaurant-detail-reviews">
+  <label i18n="critic.restaurant.reviews" class="crt-label-title">All reviews</label>
+  <review-card *ngFor="let review of reviews" [review]="review"
+              [showEdit]="appUser?.role == 'admin'"
+              [showDelete]="appUser?.role == 'admin'"
+              [showReplyButton]="appUser?.role == 'owner' && review.reply == null"
+              (onEdit)="editReview($event)"
+              (onDelete)="deleteReview($event)"
+              (onReply)="postReply(restaurant.id, review.id, $event)" >
+  </review-card>
+</div>
+<div *ngIf="reviews?.length == 0 && !addingReview" id="crt-restaurant-detail-noreviews">
+  <label i18n="critic.restaurant.noreviews">There are no reviews please add the first!</label>
+</div>
+<div id="crt-restaurant-detail-loadmore">
+  <button *ngIf="reviewsHaveMoreResults$ |async"  mat-button color="accent"  (click)="loadMore()" >
+    <label i18n="critic.restaurants.reviews.loadMore">Load more</label>
+  </button>
+</div>

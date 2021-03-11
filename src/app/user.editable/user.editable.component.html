@@ -1,0 +1,30 @@
+<h2 mat-dialog-title i18n="critic.user.editable.edittitle">Edit user</h2>
+<mat-dialog-content class="mat-typography">
+<div *ngIf="user != null" id="crt-user-editable">
+  <form #userForm="ngForm" >
+    <mat-form-field appearance="fill" id="crt-user-editable-name">
+      <mat-label i18n="critic.user.name">Name</mat-label>
+      <input required matInput mat-autosize [(ngModel)]="user.name" #name="ngModel" name="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="crt-user-editable-email">
+      <mat-label i18n="critic.user.email">Email</mat-label>
+      <input required matInput mat-autosize [(ngModel)]="user.email" [email]="true" #email="ngModel" name="email">
+      <mat-error *ngIf="email?.errors?.email">
+        <label i18n="critic.user.invalidemail">Please enter a valid email address</label>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" id="crt-user-editable-role">
+      <mat-label i18n="critic.user.role">Role</mat-label>
+      <mat-select required [(ngModel)]="user.role" #role="ngModel" name="role">
+        <mat-option value="user" i18n="critic.user.editable.role.user">User</mat-option>
+        <mat-option value="owner" i18n="critic.user.editable.role.owner">Owner</mat-option>
+        <mat-option value="admin" i18n="critic.user.editable.role.admin">Admin</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial color="primary" i18n="critic.user.editable.edit" (click)="validate()">Edit</button>
+</mat-dialog-actions>

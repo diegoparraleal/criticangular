@@ -1,0 +1,7 @@
+@import 'src/theme.scss';
+
+.mat-dialog-actions{
+  button{
+    color: mat-color($critic-primary, 300);
+  }
+}
