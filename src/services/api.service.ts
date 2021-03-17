@@ -51,7 +51,7 @@ export class ApiService {
   }
 
   editUser(user: AppUser) {
-    return this.httpClient.post(`${this.apiURL}/users/${user.id}`, user, { headers: this.defaultHeaders });
+    return this.httpClient.put(`${this.apiURL}/users/${user.id}`, user, { headers: this.defaultHeaders });
   }
 
   deleteUser(userId: number) {
